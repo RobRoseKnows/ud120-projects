@@ -19,4 +19,13 @@ import pickle
 
 enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "r"))
 
+print len(enron_data)
+print len(enron_data["SKILLING JEFFREY K"])
+print sum(enron_data[key]['poi'] for key in enron_data)
+
+count = 0
+for key in enron_data:
+    if enron_data[key]['poi'] == True:
+        count += 1
+print count
 
