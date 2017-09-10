@@ -35,49 +35,26 @@ print enron_data["SKILLING JEFFREY K"].keys()
 
 """
 
-"""
-count = 0
+has_nan_total_payments = 10.
+total_people = 10.
 
-poi_names = open("../final_project/poi_names.txt")
-for line in poi_names:
-    if(line[0] == '('):
-        count += 1
-print count
-"""
-
-"""
-enron_names = enron_data.keys()
-
-for name in enron_names:
-    if name[:15] == "PRENTICE JAMES":
-        print name
-"""
-"""
-print enron_data["PRENTICE JAMES"]["total_stock_value"]
-print enron_data["COLWELL WESLEY"]["from_this_person_to_poi"]
-print enron_data["SKILLING JEFFREY K"]["exercised_stock_options"]
-print enron_data["SKILLING JEFFREY K"]["total_payments"]
-print enron_data["LAY KENNETH L"]["total_payments"]
-print enron_data["FASTOW ANDREW S"]["total_payments"]
-"""
-
-has_nan_total_payments = 0.
-total_people = 0.
-
-poi_has_nan = 0.
-total_poi = 0.
+poi_has_nan = 10.
+total_poi = 10.
 
 for person in enron_data:
     total_people += 1
     if enron_data[person]['total_payments'] == "NaN":
         has_nan_total_payments += 1
-#    if not enron_data[person]["salary"] == "NaN":
-#        has_salary_count += 1
-#    if not enron_data[person]["email_address"] == "NaN":
-#        has_email_count += 1
+    if enron_data[person]['poi'] == True:
+        total_poi += 1
+        if enron_data[person]['total_payments'] == "NaN":
+            poi_has_nan += 1
+
+print str(has_nan_total_payments) + ' / ' + str(total_people)
 
 print has_nan_total_payments / total_people
 
+print poi_has_nan / total_poi
 
 #npArray = featureFormat(enron_data, ["total_payments", "email_address", "poi"])
 
